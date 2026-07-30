@@ -1,4 +1,4 @@
-jlaselect [![](https://img.shields.io/badge/python-3.11+-blue.svg)](https://docs.python.org/3.11/) [![Maintainability](https://api.codeclimate.com/v1/badges/65ec5ac5f1152c705347/maintainability)](https://codeclimate.com/github/CALIL/jlaselect/maintainability)
+jlaselect [![](https://img.shields.io/badge/python-3.11+-blue.svg)](https://docs.python.org/3.11/)
 =============================================================
 日本図書館協会選定図書総目録CD-ROMのデータ変換ツール
 
@@ -11,7 +11,7 @@ jlaselect [![](https://img.shields.io/badge/python-3.11+-blue.svg)](https://docs
 依存パッケージのインストール
 ----
 ```
-poetry install
+uv sync
 ```
 
 コマンドライン
@@ -21,7 +21,7 @@ poetry install
 - 複数ファイルをまとめて処理する場合は、プログラムを直接修正する
 
 ```bash
-poetry run python jlaselect.py > jlaselect.jsonl
+uv run python jlaselect.py > jlaselect.jsonl
 ```
 
 サンプルデータ

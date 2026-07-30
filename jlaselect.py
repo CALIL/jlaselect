@@ -32,7 +32,7 @@ def convert_jla(filename):
     data = open(filename, 'rb').read()
     items = re.findall(b'00000000([^\x00]+)', data)
     for item in items:
-        lines = re.split('\$A', item.decode("cp932", "replace"))
+        lines = re.split(r'\$A', item.decode("cp932", "replace"))
         index = 0  # ISBN Index
         if len(lines)==1:
             print(item)
@@ -45,25 +45,25 @@ def convert_jla(filename):
             isbn = ""
         else:
             isbn = lines[1]
-        isbn = re.sub('\$M([^\$]+)', r'', isbn)
+        isbn = re.sub(r'\$M([^\$]+)', r'', isbn)
         title = lines[4 + index]
-        if not re.search("\$", lines[5 + index]):
+        if not re.search(r"\$", lines[5 + index]):
             title += " [" + lines[5 + index] + "]"
             publisher_ = lines[6 + index]
         else:
-            if not re.search("\$F", lines[5 + index]):
+            if not re.search(r"\$F", lines[5 + index]):
                 publisher_ = lines[5 + index]
             else:
                 publisher_ = lines[6 + index]
-        authors = re.findall('\$F([^\$]+)', title)
+        authors = re.findall(r'\$F([^\$]+)', title)
         author = ",".join(authors)
-        title = re.sub('\$F([^\$]+)', r'', title)
-        title = re.sub('\$B([^\$]+)', r' \1', title)
-        publisher = ",".join(re.findall('\$B([^\$]+)', publisher_))
-        year = ",".join(re.findall('\$D([^\$]+)', publisher_))
+        title = re.sub(r'\$F([^\$]+)', r'', title)
+        title = re.sub(r'\$B([^\$]+)', r' \1', title)
+        publisher = ",".join(re.findall(r'\$B([^\$]+)', publisher_))
+        year = ",".join(re.findall(r'\$D([^\$]+)', publisher_))
         if year == "":
-            year = ",".join(re.findall('\$D([^\$]+)', title))
-        title = re.sub('\$D([^\$]+)', r' \1', title)
+            year = ",".join(re.findall(r'\$D([^\$]+)', title))
+        title = re.sub(r'\$D([^\$]+)', r' \1', title)
         id_ = re.split(" ", lines[3 + index])[1]
         v = {
             'id': int(id_),

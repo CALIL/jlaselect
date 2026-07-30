@@ -1,17 +1,14 @@
-[tool.poetry]
+[project]
 name = "jlaselect"
 version = "0.1.0"
-description = ""
-authors = ["Ryuuji Yoshimoto <ryuuji@calil.jp>"]
+description = "日本図書館協会選定図書総目録CD-ROMのデータ変換ツール"
+authors = [{ name = "Ryuuji Yoshimoto", email = "ryuuji@calil.jp" }]
 readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click",
+    "isbnlib",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-click = "*"
-isbnlib = "*"
-
-
-[tool.poetry.group.dev.dependencies]
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+package = false
